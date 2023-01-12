@@ -30,9 +30,13 @@ function eventClick(event) {
     }
     const originalEl = event.target.dataset.source
     const instance = basicLightbox.create(
-       `<img  src="${originalEl}" width=100% height=100% />`)
-    instance.show()
-
+        `<img  src="${originalEl}" width=100% height=100% />`)
+    function keyPress(event) {
+        if (event.key === "Escape") {
+           return instance.close()
+        } 
+    }
+    document.addEventListener('keydown', keyPress)
+    instance.show() 
 }
-   listEl.addEventListener("click", eventClick)
-
+listEl.addEventListener("click", eventClick)
